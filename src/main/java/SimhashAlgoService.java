@@ -19,16 +19,45 @@ public class SimhashAlgoService {
 
     public static void main(String[] args) {
         SimhashAlgoService simhashAlgoService = new SimhashAlgoService();
-        String string = "劳斯莱斯女神\n" +
+        String string1 = "劳斯莱斯女神\n" +
                 "\n" +
-                "这个车标的设计者是英国画家兼雕刻家查尔斯·赛克斯。20世纪初，经朋友蒙塔古邀请，赛克斯负责为劳斯莱斯设计一尊雕塑车标。当时，已婚的蒙塔古疯狂地爱着他的女秘书桑顿，恳请赛克斯以桑顿为原型设计车标。所以，赛克斯的最初设计中，雕像是一尊披着长袍的女人将手指放在嘴唇上，象征着蒙塔古与桑顿之间不能说的秘密情史。这个恋爱故事历经重重磨难，桑顿身份地位曾是脱衣舞女郎，所以两人根本无法在一起生活，在得到家庭与蒙塔古妻子的谅解后，两人最终可以走到一起，不幸的是，后来桑顿在一次乘船旅行中不幸遭遇德军水雷，永远沉入了冰冷的大海。\n" +
+                "这个车标的设计者是英国画家兼雕刻家查尔斯·赛克斯。20世纪初，经朋友蒙塔古邀请，赛克斯负责为劳斯莱斯设计一尊雕塑车标。" +
+                "当时，已婚的蒙塔古疯狂地爱着他的女秘书桑顿，恳请赛克斯以桑顿为原型设计车标。" +
+                "所以，赛克斯的最初设计中，雕像是一尊披着长袍的女人将手指放在嘴唇上，象征着蒙塔古与桑顿之间不能说的秘密情史。" +
+                "这个恋爱故事历经重重磨难，桑顿身份地位曾是脱衣舞女郎，所以两人根本无法在一起生活，在得到家庭与蒙塔古妻子的谅解后，两人最终可以走到一起，不幸的是，后来桑顿在一次乘船旅行中不幸遭遇德军水雷，永远沉入了冰冷的大海。\n" +
                 "\n" +
-                "后来，他们这段美好的爱情又略带凄惨故事就保留在了这个车标上，罗 -罗二人也是蒙塔古的好友，他们得知这件事之后非常感动。后来，他们邀请赛克斯又把它改为双手如羽翼般向后伸展的形象，也就是今天的“飞天女神”。 1911年，它正式成为劳斯莱斯车的车标。从此，劳斯莱斯的飞天女神车标更是美丽的爱情象征了!";
+                "后来，他们这段美好的爱情又略带凄惨故事就保留在了这个车标上，罗 -罗二人也是蒙塔古的好友，他们得知这件事之后非常感动。" +
+                "后来，他们邀请赛克斯又把它改为双手如羽翼般向后伸展的形象，也就是今天的“飞天女神”。 " +
+                "1911年，它正式成为劳斯莱斯车的车标。从此，劳斯莱斯的飞天女神车标更是美丽的爱情象征了!";
+        String string2 = "劳斯莱斯男神\n" +
+                "\n" +
+                "这个车标的设计者是英国画家兼雕刻家查尔斯·赛克斯。20世纪初，经朋友蒙塔古邀请，赛克斯负责为劳斯莱斯设计一尊雕塑车标。" +
+                "当时，已婚的蒙塔古疯狂地爱着他的男秘书桑顿，恳请赛克斯以桑顿为原型设计车标。" +
+                "所以，赛克斯的最初设计中，雕像是一尊披着长袍的男人将手指放在嘴唇上，象征着蒙塔古与桑顿之间不能说的秘密情史。" +
+                "这个恋爱故事历经重重磨难，桑顿身份地位曾是脱衣舞男演员，所以两人根本无法在一起生活，在得到家庭与蒙塔古妻子的谅解后，两人最终可以走到一起，不幸的是，后来桑顿在一次乘船旅行中不幸遭遇德军水雷，永远沉入了冰冷的大海。\n" +
+                "\n" +
+                "后来，他们这段美好的爱情又略带凄惨故事就保留在了这个车标上，罗 -罗二人也是蒙塔古的好友，他们得知这件事之后非常感动。" +
+                "后来，他们邀请赛克斯又把它改为双手如羽翼般向后伸展的形象，也就是今天的“飞天男神”。 " +
+                "1911年，它正式成为劳斯莱斯车的车标。从此，劳斯莱斯的飞天男神车标更是美丽的爱情象征了!";
         // 返回的指纹已经被切分成4段，方便利用指纹作对比。具体对比方式可自行百度。
-        List<String> fingerPrints = simhashAlgoService.simHash(string,64);
-        System.out.println(fingerPrints);
+        List<String> fingerPrint1 = simhashAlgoService.simHash(string1,64);
+        List<String> fingerPrint2 = simhashAlgoService.simHash(string2,64);
+        System.out.println("fingerPrint1" + fingerPrint1);
+        System.out.println("fingerPrint2" + fingerPrint2);
+        double similarity = similarity(fingerPrint1, fingerPrint2);
+        System.out.println("相似度 similarity = " + similarity);
     }
-
+    static double similarity(List<String> fingerPrint1,List<String> fingerPrint2) {
+        double similarity = 0;
+        for (int i = 0; i < fingerPrint1.size(); i++) {
+            for (int j = 0; j < fingerPrint2.size(); j++) {
+                if (i == j) {
+                    similarity += getDistance(fingerPrint1.get(i), fingerPrint2.get(j));
+                }
+            }
+        }
+        return 1-similarity/64;
+    }
 
     private StandardTokenizer hanlpService;
 
@@ -116,7 +145,7 @@ public class SimhashAlgoService {
         // cleanResume 删除简历固有文字
         this.tokens = cleanResume(tokens);
         this.hashbits = hashbits;
-        this.wordCount = new HashMap<String, Integer>();
+        this.wordCount = new HashMap<String, Integer>(tokens.toCharArray().length);
         setMap();
 
         // 定义特征向量/数组
@@ -231,7 +260,7 @@ public class SimhashAlgoService {
 
 
     // 用于计算二进制的hamming距离
-    public int getDistance(String str1, String str2) {
+    public static int getDistance(String str1, String str2) {
         int distance;
         if (str1.length() != str2.length()) {
             distance = -1;
