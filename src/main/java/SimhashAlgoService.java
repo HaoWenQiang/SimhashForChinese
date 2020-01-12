@@ -2,10 +2,7 @@ import com.hankcs.hanlp.seg.common.Term;
 import com.hankcs.hanlp.tokenizer.StandardTokenizer;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
@@ -164,7 +161,6 @@ public class SimhashAlgoService {
             else {
                 this.wordCount.put(word,1);
             }
-
             // 过滤停用词性
             if (this.stopNatures.containsKey(nature)) {continue;}
             // 2、将每一个分词hash为一组固定长度的数列.比如 64bit 的一个整数.
